@@ -3,7 +3,7 @@
      global $db;
      $query = 'insert into todo_list(todo, user_id) values (:todo_text, :userid)';
      $statement = $db->prepare($query);
-    i $statement->bindValue(':userid',$user_id);
+     $statement->bindValue(':userid',$user_id);
      $statement->bindValue(':todo_text',$description);
      $statement->execute();
      $statement->closeCursor();
