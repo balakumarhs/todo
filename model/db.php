@@ -3,7 +3,7 @@
      global $db;
      $query = 'insert into todo_list(todo, user_id) values (:todo_text, :userid)';
      $statement = $db->prepare($query);
-     $statement->bindValue(':userid',$user_id);
+    i $statement->bindValue(':userid',$user_id);
      $statement->bindValue(':todo_text',$description);
      $statement->execute();
      $statement->closeCursor();
@@ -21,25 +21,7 @@
      $statement->closeCursor();
      return $result;
    }
-   function createUser($fname,$lname,$contact,$email,$username,$password){
-     global $db;
-     
-     $query = 'insert into user_info
-                 (first_name, last_name, contact_no, email, username, password)
-              values
-                 (:firstname, :lastname, :contact, :email, :username, :password)';
-    $statement = $db->prepare($query);
-    $statement->bindValue(':firstname', $firstname);
-    $statement->bindValue(':lastname', $lastname);
-    $statement->bindValue(':contact', $contact);
-    $statement->bindValue(':email', $email);
-    $statement->bindValue(':username', $user);
-    $statement->bindValue(':password', $passwords);
-    $statement->execute();
-    $statement->closeCursor();
-     return true;
-     
-   }
+
    function registerUser($fname,$lname,$contact,$email,$username,$password){
    global $db;
    $query = 'select * from user_info where username = :uname';
