@@ -1,0 +1,49 @@
+<?php
+require('../model/db_connection.php');
+require('../model/db.php');
+$action = filter_input(INPUT_POST, "action");
+if($action == NULL)
+{
+  $action = "show_login_page";
+}
+if($action == "show_login_page")
+{
+  include('./index.php');
+}else if($action == 'test_user')
+{
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+  $suc = isUserValid($username,$password);
+  if($suc == true)
+  {
+    $result = getTodoItems($_COOKIE['my_id']);
+    include('list.php');
+  }else{
+    header("Location: ../error/badinfo.php");
+  }
+}else if ($action == 'register')
+{
+// echo " we want to create a new account";
+  $username = $_POST['user'];
+  if(isset($username))
+  {
+     
+      $password = $_POST['password'];
+      $fname = $_POST['firstname'];
+      $lastname = $_POST['lastname'];
+      $contact = $_POST['contact'];
+      $email = $_POST['mailid'];
+     $exit = createUser($fname,$lname,$contact,$email,$username,$password);
+     if($exit == true)
+     {
+       header("Location: ../login.php");
+     }else {
+       header("Location: ../index.php");
+     }
+  }
+}else if ($action == 'add')
+{
+
+
+}
+?>
