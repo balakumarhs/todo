@@ -24,9 +24,9 @@
    function createUser($fname,$lname,$contact,$email,$username,$password){
      global $db;
      
-     $query = 'INSERT INTO todo_list
+     $query = 'insert into user_info
                  (first_name, last_name, contact_no, email, username, password)
-              VALUES
+              values
                  (:firstname, :lastname, :contact, :email, :username, :password)';
     $statement = $db->prepare($query);
     $statement->bindValue(':firstname', $firstname);
@@ -40,6 +40,41 @@
      return true;
      
    }
+   function registerUser($fname,$lname,$contact,$email,$username,$password){
+   global $db;
+   $query = 'select * from user_info where username = :uname';
+   $statement = $db->prepare($query);
+   $statement->bindValue(':fname',$fname);
+   $statement->bindValue(':lname',$lname);
+   $statement->bindValue(':cont',$contact);
+   $statement->bindValue(':emailid',$email);
+   $statement->bindValue(':uname',$usename);
+   $statement->bindValue(':pass',$password);
+   $statement->execute();
+   $result = $statment->featchAll();
+   $statment->closeCursor();
+   $count= $statement->rowCount();
+   if($count > 0){
+   return true;
+   }
+   else{
+   $query = 'insert into user_info(first_name,last_name,contact_no,email,username,password)
+             values
+	     (:fname,:lname,:cont,:emailid,:uname,:pass)';
+   $statement = $db->prepare($query);
+   $statement->bindValue(':fname',$fname);
+   $statement->bindValue(':lname',$lname);
+   $statement->bindValue(':cont',$contact);
+   $statement->bindValue(':emailid',$email);
+   $statement->bindValue(':uname',$username);
+   $statement->bindValue(':pass',$password);
+   $statement->execute();
+   $statement->closeCursor();
+   return false;
+   }
+   
+   }
+
    function isUserValid($username,$password){
      global $db;
      $query = 'select * from user_info where username = :name and 

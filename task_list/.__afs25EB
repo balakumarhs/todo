@@ -24,21 +24,19 @@ if($action == "show_login_page")
 }else if ($action == 'register')
 {
 // echo " we want to create a new account";
+
        $fname = filter_input(INPUT_POST, 'firstname');
        $lname = filter_input(INPUT_POST, 'lastname');
        $contact = filter_input(INPUT_POST, 'contact');
        $email = filter_input(INPUT_POST, 'mailid');
        $username = filter_input(INPUT_POST, 'user');
        $password = filter_input(INPUT_POST, 'password');
-       $exit = registerUser($fname,$lname,$contact,$email,$username,$password);
+       $exit = createUser($fname,$lname,$contact,$email,$username,$password);
        if($exit == true)
        {
-       echo "already exist";
-          // header("Location: ../register.php");
-   }else{
-   echo "done";
+           header("Location: ../register.php");
    }
-  }
+  } 
 else if ($action == 'add')
 {
       $user_id = filter_input(INPUT_POST, 'userid',FILTER_VALIDATE_INT);
@@ -47,13 +45,8 @@ else if ($action == 'add')
      // echo $description;
       $add = addTodoItem($user_id,$description);
       if($add == true){
-      header('Location: index.php');
+      include('index.php');
       }
-
-}
-else if ($action == 'list'){
-$result = getTodoItems($_COOKIE['my_id']);
-    include('list.php');
 
 }
 ?>
