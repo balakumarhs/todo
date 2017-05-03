@@ -47,13 +47,27 @@ else if ($action == 'add')
      // echo $description;
       $add = addTodoItem($user_id,$description);
       if($add == true){
-      header('Location: index.php');
+      $result = getToDoItems($_COOKIE['my_id']);
+      include('list.php');
       }
 
 }
-else if ($action == 'list'){
+else if ($action == 'deletetask'){
+    //echo "hgdsa";
+     $taskid = filter_input(INPUT_POST, 'user_id');
+    // echo $taskid;
+     $task = deleteTask($taskid);
+     if($task == true){
+     $result = getToDoItems($_COOKIE['my_id']);
+     include('list.php');
+   //  echo "saf";
+     }
+     }
+
+
+/*else if ($action == 'list'){
 $result = getTodoItems($_COOKIE['my_id']);
     include('list.php');
 
-}
+}*/
 ?>
