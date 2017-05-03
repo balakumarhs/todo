@@ -8,8 +8,16 @@
      $statement->execute();
      $statement->closeCursor();
      return true;
-     
-
+    
+   }
+   function deleteTask($taskid){
+     global $db;
+     $query = 'delete from todo_list where id = :task';
+     $statement = $db->prepare($query);
+     $statement->bindValue(':task',$taskid);
+     $statement->execute();
+     $statement->closeCursor();
+     return true;
    }
    function getTodoItems($user_id){
      global $db;
@@ -39,7 +47,7 @@
    if($count > 0){
    return true;
    }
-   else{
+  /* else{/
    $query = 'insert into user_info(first_name,last_name,contact_no,email,username,password)
              values
 	     (:fname,:lname,:cont,:emailid,:uname,:pass)';
@@ -53,7 +61,7 @@
    $statement->execute();
    $statement->closeCursor();
    return false;
-   }
+  // }*/
    
    }
 
