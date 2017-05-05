@@ -60,7 +60,7 @@ body{
 	position: absolute;
 	top: calc(50% - 75px);
 	left: calc(50% - 50px);
-	background : #fff;
+	background : #3F7FBF;
 	box-shadow: 5px 5px 3px #2A2B2B;
 	z-index : 5;
 	height: 200px;
@@ -70,9 +70,9 @@ body{
 	z-index: 2;
 }
 .login input[type=text]{
-	width: 250px;
+	width: 260px;
 	height: 30px;
-	background: transparent;
+	background: rgba(255, 255, 255,0.6);
 	border: 1px solid rgba(63, 127, 191,0.6);
 	border-radius: 2px;
         color: #3F7FBF;
@@ -83,9 +83,9 @@ body{
 	margin-top: 10px;
 }
 .login input[type=password]{
-	width: 250px;
+	width: 260px;
 	height: 30px;
-	background: transparent;
+	background: rgba(255, 255, 255,0.6);
 	border: 1px solid rgba(63, 127, 191,0.6);
 	border-radius: 2px;
 	color: #3F7FBF;
@@ -99,8 +99,8 @@ body{
 .login input[type=submit]{
 	width: 260px;
 	height: 35px;
-	background: #3498DB;
-	border: 1px solid #3498DB;
+	background: #2a2b2b;
+	border: 1px solid #2a2b2b;
 	cursor: pointer;
 	border-radius: 2px;
 	color: #fff;
@@ -149,7 +149,7 @@ body{
   <br>
   <div class="login">
 	<form class="form-login" method="post" action="./task_list/index.php">
-        <input type="text" placeholder="Username" name="username"><br>
+        <input type="text" placeholder="E-mail" name="email"><br>
 	<input type="password" placeholder="password" name="password"><br>
 	<input type ="hidden" name="action" value="test_user">
         <input type="submit" value="Login" name="submit">
