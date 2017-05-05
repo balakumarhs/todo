@@ -76,7 +76,11 @@ else if ($action == 'addtask')
 }
 
 else if($action == 'edittask'){
-
+     $editid = filter_input(INPUT_POST, 'user_id');
+  // echo $editid;
+     $result3 = getTask($editid);
+     include('edittask.php');
+   //  header("Location: edittask.php")
 }
 else if ($action == 'deletetask'){
     //echo "hgdsa";
@@ -90,7 +94,21 @@ else if ($action == 'deletetask'){
    //  echo "saf";
      }
      }
+else if ($action == 'etask'){
+     $etask = filter_input(INPUT_POST, 'edtask');
+     $edescription = filter_input(INPUT_POST, 'edescription');
+     $edate = filter_input(INPUT_POST, 'date');
+     $etime = filter_input(INPUT_POST, 'time');
+     $eid = filter_input(INPUT_POST, 'user_id');
+    // echo $eid;
+     $editvalue = editValue($etask,$edescription,$etime,$edate,$eid);
+     if($editvalue == true){
+     $result = getToDoItems($_COOKIE['my_id']);
+     $result2 = completedItems($_COOKIE['my_id']);
+     include('list.php');
+     }
 
+}
 else if ($action == 'statusupdate'){
       $id = filter_input(INPUT_POST, 'user_id');
       $status = "complete";
