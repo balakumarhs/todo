@@ -11,26 +11,31 @@ echo "<br> <br>";
        <tr>
       <th>Task</th>
       <th>&nbsp;</th>
+      <th>&nbsp;</th>
       </tr>
         <?php foreach($result as $res):?>
       <tr>
         <td> <?php echo $res['todo']; ?>  </td>
+	 <td> <?php echo $res['todo']; ?>  </td>
+
 	<td><form action="index.php" method="post">
             <input type="hidden" name="user_id" value="<?php echo $res['id']; ?>">
 	    <input type="submit" value="Delete">
 	    <input type="hidden" name='action' value="deletetask">
             </form>
         </td>
+	<td><form action="index.php" method="post">
+	    <input type="submit" value="Update Status">
+	    <input type="hidden" name='action' value="statusupdate">
+	    </form>
+        </td>
       </tr>  
 	<?php endforeach;?>
       
     </table>
-    <form method = 'post' action='index.php'>
-        <strong> Description: </strong> <input type='text' name='description'/><br>
-	<input type="hidden" name="userid" value="<?php echo $_COOKIE['my_id']; ?>">
-
-	<input type = 'hidden' name = 'action' value='add'><br>
-	<input type="submit" value="Add"/>
+      <form method = 'post' action='addtask.php'>
+   <br> <input type="submit" value="Add Task"/>
     </form>
+    
   </body>
 </html>
