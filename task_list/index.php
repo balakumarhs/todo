@@ -17,6 +17,7 @@ if($action == "show_login_page")
   if($suc == true)
   {
     $result = getTodoItems($_COOKIE['my_id']);
+   $result2 = completedItems($_COOKIE['my_id']);
     include('list.php');
   }else{
     header("Location: ../error/badinfo.php");
@@ -51,6 +52,7 @@ else if ($action == 'add')
       $add = addTodoItem($user_id,$description);
       if($add == true){
       $result = getToDoItems($_COOKIE['my_id']);
+      $result2 = completedItems($_COOKIE['my_id']);
       include('list.php');
       }
 
@@ -67,12 +69,15 @@ else if ($action == 'addtask')
  $addtask = addTodoItems($user_id,$description,$task,$date,$time,$status);
       if($addtask == true){
       $result = getToDoItems($_COOKIE['my_id']);
-        include('list.php');
-        }
+      $result2 = completedItems($_COOKIE['my_id']);
+      include('list.php');
+      }
 
 }
 
+else if($action == 'edittask'){
 
+}
 else if ($action == 'deletetask'){
     //echo "hgdsa";
      $taskid = filter_input(INPUT_POST, 'user_id');
@@ -80,6 +85,7 @@ else if ($action == 'deletetask'){
      $task = deleteTask($taskid);
      if($task == true){
      $result = getToDoItems($_COOKIE['my_id']);
+     $result2 = completedItems($_COOKIE['my_id']);
      include('list.php');
    //  echo "saf";
      }
@@ -91,7 +97,8 @@ else if ($action == 'statusupdate'){
       $statusupdate = updateStatus($status,$id);
       if($statusupdate == true){
          $result = getToDoItems($_COOKIE['my_id']);
-         include('list.php');
-      }
-}
-
+         $result2 = completedItems($_COOKIE['my_id']);
+	 include('list.php');
+     }
+     }
+?>
