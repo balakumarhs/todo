@@ -11,7 +11,7 @@ if($action == "show_login_page")
   include('./index.php');
 }else if($action == 'test_user')
 {
-  $username = $_POST['username'];
+  $username = $_POST['email'];
   $password = $_POST['password'];
   $suc = isUserValid($username,$password);
   if($suc == true)
@@ -30,13 +30,16 @@ if($action == "show_login_page")
        $email = filter_input(INPUT_POST, 'mailid');
        $username = filter_input(INPUT_POST, 'user');
        $password = filter_input(INPUT_POST, 'password');
-       $exit = registerUser($fname,$lname,$contact,$email,$username,$password);
+       $birth = filter_input(INPUT_POST, 'dob');
+       $gender = filter_input(INPUT_POST, 'gender');
+       $exit = registerUser($fname,$lname,$contact,$email,$username,$password,$birth,$gender);
        if($exit == true)
        {
-       echo "already exist";
-          // header("Location: ../register.php");
+      // echo "already exist";
+        header("Location: ../error/userexist.php");
    }else{
-   echo "done";
+       header("Location: ../index.php");
+
    }
   }
 else if ($action == 'add')
@@ -52,6 +55,24 @@ else if ($action == 'add')
       }
 
 }
+
+else if ($action == 'addtask')
+{
+ $user_id = filter_input(INPUT_POST, 'userid',FILTER_VALIDATE_INT);
+ $task = filter_input(INPUT_POST, 'task');
+ $description = filter_input(INPUT_POST, 'description');
+ $date = filter_input(INPUT_POST, 'datetodo');
+ $time = filter_input(INPUT_POST, 'timetodo');
+ $status = "incomplete";
+ $addtask = addTodoItems($user_id,$description,$task,$date,$time,$status);
+      if($addtask == true){
+      $result = getToDoItems($_COOKIE['my_id']);
+        include('list.php');
+        }
+
+}
+
+
 else if ($action == 'deletetask'){
     //echo "hgdsa";
      $taskid = filter_input(INPUT_POST, 'user_id');
@@ -65,9 +86,4 @@ else if ($action == 'deletetask'){
      }
 
 
-/*else if ($action == 'list'){
-$result = getTodoItems($_COOKIE['my_id']);
-    include('list.php');
-
-}*/
 ?>
