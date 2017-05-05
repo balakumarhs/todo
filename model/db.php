@@ -47,6 +47,41 @@
      $statement->closeCursor();
      return $result;
    }
+   function completedItems($user_id){
+        global $db;
+	$query = 'select * from todo_list where user_id= :userid and status = :status';
+	$statement = $db->prepare($query);
+	$statement->bindValue(':userid',$user_id);
+	$statement->bindValue(':status','complete');
+	$statement->execute();
+	$result= $statement->fetchAll();
+	$statement->closeCursor();
+	return $result;
+  }
+  function editValue($etask,$edescription,$edate,$etime,$eid){
+        global $db;
+	$query = 'update todo_list set todo = :etask, description = :edescription, date = :etime, time = :edate where id = :eid';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':etask',$etask);
+        $statement->bindValue(':eid',$eid);
+	$statement->bindValue(':edescription',$edescription);
+	$statement->bindValue(':edate',$edate);
+	$statement->bindValue(':etime',$etime);
+        $statement->execute();
+        $statement->closeCursor();
+        return true;
+
+  }
+  function getTask($editid){
+        global $db;
+	$query = 'select * from todo_list where id = :eid';
+	$statement = $db->prepare($query);
+	$statement->bindValue(':eid',$editid);
+	$statement->execute();
+	$result= $statement->fetchAll();
+	$statement->closeCursor();
+	return $result;
+  }
 
    function registerUser($fname,$lname,$contact,$email,$username,$password,$birth,$gender){
    global $db;
