@@ -85,5 +85,13 @@ else if ($action == 'deletetask'){
      }
      }
 
+else if ($action == 'statusupdate'){
+      $id = filter_input(INPUT_POST, 'user_id');
+      $status = "complete";
+      $statusupdate = updateStatus($status,$id);
+      if($statusupdate == true){
+         $result = getToDoItems($_COOKIE['my_id']);
+         include('list.php');
+      }
+}
 
-?>
