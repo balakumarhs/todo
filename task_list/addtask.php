@@ -110,6 +110,7 @@ z-index: 2;
 <body>
 <div class="welcome">
 <h1>Add Task</h1>
+<strong> <p> Welcome, <?php echo $_COOKIE['my_name']?> <?php echo $_COOKIE['my_lname']?></p></strong>
 </div>
 <div class="login">
 <form style="margin-left:18px;" method = 'post' action='index.php'>
