@@ -35,11 +35,17 @@ text-align: center;
 .welcome{
 background:#4c75af;
 }
+p {
+margin-right: 5px;
+font-family: cursive;
+color: #fff;
+text-align: right;
+}
 
 .login1{
 position: absolute;
 top: calc(20% - 5px);
-left: calc(45% - 50px);
+left: calc(55% - 50px);
 background : #fff;
 box-shadow: 5px 5px 3px #2A2B2B;
 z-index : 5;
@@ -53,7 +59,7 @@ z-index: 2;
 .login{
 position: absolute;
 top: calc(20% - 5px);
-left: calc(20% - 50px);
+left: calc(30% - 50px);
 background : #fff;
 box-shadow: 5px 5px 3px #2A2B2B;
 z-index : 5;
@@ -123,6 +129,7 @@ margin-top: 10px;
 <body>
 <div class="welcome">
 <h1>Edit Task</h1>
+<strong> <p> Welcome, <?php echo $_COOKIE['my_name']?> <?php echo $_COOKIE['my_lname']?></p></strong>
 </div>
 
 <div class="login">
