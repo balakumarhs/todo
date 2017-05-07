@@ -14,12 +14,26 @@ th {
     background-color: #4c75af;
     color: white;
 }
+input[type=text]{
+width: 260px;
+height: 30px;
+background: rgba(255, 255, 255,0.6);
+border: 1px solid rgba(63, 127, 191,0.6);
+border-radius: 2px;
+color: #3F7FBF;
+font-family: 'Exo', sans-serif;
+font-size: 16px;
+font-weight: 400;
+padding: 4px;
+margin-top: 10px;
+}
+
 input[type=submit] {
     width: 120px;
     height: 30px;
     background-color: #4c75af;
     color: white;
-    padding: 8px 20px;
+    padding: 0px 15px;
     margin: -15px 0;
     border: none;
     border-radius: 4px;
@@ -41,17 +55,18 @@ font-family: cursive;
 text-align: center;
 }
 p {
+margin-right: 5px;
 font-family: cursive;
 color: #fff;
-text-align: rigth;
+text-align: right;
 }
 
 
 </style>
-  <body>
+  <body style="background: #d3d3d3">
   <div class="welcome">
  <h1> To do list system</h1>
-  <p> Welcome,<?php echo $_COOKIE['login']?></p>
+ <strong> <p> Welcome, <?php echo $_COOKIE['my_name']?> <?php echo $_COOKIE['my_lname']?></p></strong>
   </div>
    <h3><strong>Task To Complete</strong></h3>
     <table>
@@ -73,20 +88,20 @@ text-align: rigth;
 
 	<td><form style="margin-top: 15px;" action="index.php" method="post">
             <input type="hidden" name="user_id" value="<?php echo $res['id']; ?>">
-	    <input style="text-align: center;" type="submit" value="Delete">
+	    <input style="text-align: center; font-family: cursive;" type="submit" value="Delete">
 	    <input type="hidden" name='action' value="deletetask">
             </form>
         </td>
 	<td><form style="margin-top: 15px;" action="index.php" method="post">
 	    <input type="hidden" name="user_id" value="<?php echo $res['id']; ?>">
-	    <input type="submit" style="text-align: center;" value="Update Status">
+	    <input type="submit" style="text-align: center; font-family: cursive;" value="Update Status">
 	    <input type="hidden" name='action' value="statusupdate">
 	    </form>
         </td>
         <td>
 	   <form style="margin-top: 15px;" action="index.php" method= "post">
 	   <input type="hidden" name= "user_id" value="<?php echo $res['id']; ?>">
-	   <input type="submit" style="text-align: center;" value = "Edit">
+	   <input type="submit" style="text-align: center;font-family: cursive; " value = "Edit">
 	   <input type="hidden" name='action' value="edittask">
 	   </form>
 	</td>
@@ -94,8 +109,8 @@ text-align: rigth;
 	<?php endforeach;?>
       
     </table>
-      <form method = 'post' action='addtask.php'>
-   <br> <input type="submit" value="Add Task"/>
+      <form style="margin-top:10px;" method = 'post' action='addtask.php'>
+   <br> <input type="submit" style="font-family: cursive;" value="Add Task"/>
     </form>
  <h3><strong>Completed Task</strong></h3>
     <table>
@@ -114,7 +129,7 @@ text-align: rigth;
            <td style="text-align: center;"> <?php echo $res2['time']; ?>  </td>
            <td><form style="margin-top: 15px;" action="index.php" method="post">
                <input type="hidden" name="user_id" value="<?php echo $res2['id']; ?>">
-               <input type="submit" value="Delete">
+               <input type="submit" style="font-family: cursive;" value="Delete">
 	       <input type="hidden" name='action' value="deletetask">
 	       </form>
 	  </td>
@@ -123,3 +138,7 @@ text-align: rigth;
 
   </body>
 </html>
+<?php
+include('../view/footer.php');
+?>
+
