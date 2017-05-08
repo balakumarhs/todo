@@ -66,7 +66,7 @@ text-align: right;
   <body style="background: #d3d3d3">
   <div class="welcome">
  <h1> To do list system</h1>
- <strong> <p> Welcome, <?php echo $_COOKIE['my_name']?> <?php echo $_COOKIE['my_lname']?></p></strong>
+ <strong> <p> Welcome, <?php $fname = $_SESSION['first_name']; echo $fname;?> <?php $lname = $_SESSION['last_name']; echo $lname;?></p></strong>
   </div>
    <h3><strong>Task To Complete</strong></h3>
     <table>
@@ -105,9 +105,9 @@ text-align: right;
 	   <input type="hidden" name='action' value="edittask">
 	   </form>
 	</td>
-      </tr>  
-	<?php endforeach;?>
-      
+</tr>  
+
+      <?php endforeach;?>
     </table>
       <form style="margin-top:10px;" method = 'post' action='addtask.php'>
    <br> <input type="submit" style="font-family: cursive;" value="Add Task"/>
