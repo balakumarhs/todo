@@ -129,7 +129,8 @@ margin-top: 10px;
 <body>
 <div class="welcome">
 <h1>Edit Task</h1>
-<strong> <p> Welcome, <?php echo $_COOKIE['my_name']?> <?php echo $_COOKIE['my_lname']?></p></strong>
+<strong> <p> Welcome, <?php $fname = $_SESSION['first_name']; echo $fname;?> <?php $lname = $_SESSION['last_name']; echo $lname;?></p></strong>
+
 </div>
 
 <div class="login">
@@ -157,3 +158,4 @@ margin-top: 10px;
 
 </body>
 </html>
+
