@@ -1,5 +1,6 @@
 <?php
-   
+ session_start();
+
    function addTodoItems($user_id,$description,$task,$date,$time,$status){
         global $db;
 	$query = 'insert into todo_list(todo, user_id, status, description, date, time) values (:task, :userid, :status, :todo_text, :date, :time)';
@@ -36,11 +37,11 @@
      $statement->closeCursor();
      return true;
    }
-   function getTodoItems($user_id){
+   function getTodoItems($id){
      global $db;
      $query = 'select * from todo_list where user_id= :userid and status = :status';
      $statement = $db->prepare($query);
-     $statement->bindValue(':userid',$user_id);
+     $statement->bindValue(':userid',$id);
      $statement->bindValue(':status','incomplete');
      $statement->execute();
      $result= $statement->fetchAll();
@@ -133,9 +134,16 @@
 
      $count = $statement->rowCount();
      if($count == 1){
+       $id = $result[0]['id'];
+       $_SESSION['id'] = $id;
+       $fname = $result[0]['first_name'];
+       $_SESSION['first_name'] = $fname;
+       $lname = $result[0]['last_name'];
+       $_SESSION['last_name'] = $lname;
        setcookie('login',$username);
        setcookie('my_id',$result[0]['id']);
-       setcookie('my_name',$result[1]['first_name']);
+       //setcookie('my_name',$result[0]['first_name']);
+       //setcookie('my_lname',$result[0]['last_name']);
        setcookie('islogged',true);
        return true;
      }else{
