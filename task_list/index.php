@@ -1,4 +1,6 @@
 <?php
+//$id = $_SESSION['userid'];
+//echo $id;
 require('../model/db_connection.php');
 require('../model/db.php');
 $action = filter_input(INPUT_POST, "action");
@@ -16,9 +18,13 @@ if($action == "show_login_page")
   $suc = isUserValid($username,$password);
   if($suc == true)
   {
-    $result = getTodoItems($_COOKIE['my_id']);
-   $result2 = completedItems($_COOKIE['my_id']);
+   $id = $_SESSION['id'];
+   $result = getTodoItems($id);
+   $result2 = completedItems($id);
     include('list.php');
+   
+    
+   
   }else{
     header("Location: ../error/badinfo.php");
   }
@@ -50,9 +56,11 @@ else if ($action == 'add')
      // echo $user_id;
      // echo $description;
       $add = addTodoItem($user_id,$description);
-      if($add == true){
-      $result = getToDoItems($_COOKIE['my_id']);
-      $result2 = completedItems($_COOKIE['my_id']);
+      if ($add == true){
+      $id = $_SESSION['id'];
+      $result = getTodoItems($id);
+      $result2 = completedItems($id);
+
       include('list.php');
       }
 
@@ -68,9 +76,11 @@ else if ($action == 'addtask')
  $status = "incomplete";
  $addtask = addTodoItems($user_id,$description,$task,$date,$time,$status);
       if($addtask == true){
-      $result = getToDoItems($_COOKIE['my_id']);
-      $result2 = completedItems($_COOKIE['my_id']);
+      $id = $_SESSION['id'];
+         $result = getTodoItems($id);
+	 $result2 = completedItems($id);
       include('list.php');
+      
       }
 
 }
@@ -80,6 +90,7 @@ else if($action == 'edittask'){
   // echo $editid;
      $result3 = getTask($editid);
      include('edittask.php');
+
    //  header("Location: edittask.php")
 }
 else if ($action == 'deletetask'){
@@ -88,10 +99,11 @@ else if ($action == 'deletetask'){
     // echo $taskid;
      $task = deleteTask($taskid);
      if($task == true){
-     $result = getToDoItems($_COOKIE['my_id']);
-     $result2 = completedItems($_COOKIE['my_id']);
+     $id = $_SESSION['id'];
+        $result = getTodoItems($id);
+	$result2 = completedItems($id);
+	   
      include('list.php');
-   //  echo "saf";
      }
      }
 else if ($action == 'etask'){
@@ -103,8 +115,10 @@ else if ($action == 'etask'){
     // echo $eid;
      $editvalue = editValue($etask,$edescription,$etime,$edate,$eid);
      if($editvalue == true){
-     $result = getToDoItems($_COOKIE['my_id']);
-     $result2 = completedItems($_COOKIE['my_id']);
+     $id = $_SESSION['id'];
+     $result = getTodoItems($id);
+     $result2 = completedItems($id);
+	   
      include('list.php');
      }
 
@@ -114,9 +128,12 @@ else if ($action == 'statusupdate'){
       $status = "complete";
       $statusupdate = updateStatus($status,$id);
       if($statusupdate == true){
-         $result = getToDoItems($_COOKIE['my_id']);
-         $result2 = completedItems($_COOKIE['my_id']);
+         $id = $_SESSION['id'];
+	 $result = getTodoItems($id);
+	 $result2 = completedItems($id);
+
 	 include('list.php');
      }
+
      }
 ?>
