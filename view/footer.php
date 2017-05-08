@@ -18,6 +18,3 @@ text-align: center;
 <strong> <p> Created By - Balakumar Shanmugam</p></strong>
 </div>
 </body>
-~
-~
-
